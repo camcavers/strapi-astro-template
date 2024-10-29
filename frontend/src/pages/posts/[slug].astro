@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { fetchPost } from '../../lib/api';
+
+// Add console.log for debugging
+console.log('Fetching post with slug:', Astro.params.slug);
+const post = await fetchPost(Astro.params.slug);
+console.log('Post fetched:', post);
+---
+
+<Layout title={post.attributes.title}>
+  <article class="container post-full">
+    <header class="post-full__header">
+      <h1>{post.attributes.title}</h1>
+      <div class="post-full__meta">
+        {new Date(post.attributes.publishedAt).toLocaleDateString()}
+      </div>
+    </header>
+    
+    <div class="post-full__content" set:html={post.attributes.content} />
+  </article>
+</Layout>

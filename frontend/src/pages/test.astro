@@ -1,0 +1,28 @@
+---
+// Nothing needed in the frontmatter for now
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Environment Test</title>
+  </head>
+  <body>
+    <h1>Environment Test</h1>
+    <div>
+      <h2>Environment Variables:</h2>
+      <pre>
+PUBLIC_STRAPI_URL: {import.meta.env.PUBLIC_STRAPI_URL || 'Not set'}
+PUBLIC_STRAPI_API_TOKEN exists: {import.meta.env.PUBLIC_STRAPI_API_TOKEN ? 'Yes' : 'No'}
+      </pre>
+    </div>
+    
+    <div>
+      <h2>Debug Info:</h2>
+      <ul>
+        <li>Current URL: {Astro.url.pathname}</li>
+        <li>Environment: {import.meta.env.MODE}</li>
+      </ul>
+    </div>
+  </body>
+</html>

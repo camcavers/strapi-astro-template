@@ -1,0 +1,46 @@
+---
+// Define the prop types
+export interface Props {
+  title: string;
+}
+
+// Destructure props with type annotation
+const { title } = Astro.props as Props;
+
+// Define type for nav links
+type NavLink = {
+  href: string;
+  text: string;
+};
+
+// Define nav links with proper typing
+const navLinks: NavLink[] = [
+  { href: '/', text: 'Home' },
+  { href: '/about', text: 'About' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Your Blog</title>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <ul>
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

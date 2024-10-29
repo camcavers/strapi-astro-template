@@ -1,0 +1,85 @@
+/* File: frontend/src/styles/global.css */
+:root {
+  --container-width: 75rem;
+  --column-gap: 2rem;
+  --content-padding: 2rem;
+  
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, sans-serif;
+  --font-family-heading: var(--font-family-base);
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+  
+  /* Colors */
+  --color-text: #2c3e50;
+  --color-background: #ffffff;
+  --color-primary: #3498db;
+  --color-secondary: #2ecc71;
+  --color-muted: #95a5a6;
+}
+
+/* Base styles */
+html {
+  font-size: 16px;
+  line-height: var(--line-height-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  margin: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Grid system */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--content-padding);
+  padding-left: var(--content-padding);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--column-gap) / -2);
+  margin-left: calc(var(--column-gap) / -2);
+}
+
+/* Grid columns */
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: calc(var(--column-gap) / 2);
+    padding-left: calc(var(--column-gap) / 2);
+  }
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-right: calc(var(--column-gap) / 2);
+  padding-left: calc(var(--column-gap) / 2);
+}

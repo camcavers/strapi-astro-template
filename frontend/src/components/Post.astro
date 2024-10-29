@@ -1,0 +1,56 @@
+---
+import { format } from 'date-fns';
+
+interface Props {
+  title: string;
+  publishedAt: string;
+  excerpt: string;
+  slug: string;
+}
+
+const { title, publishedAt, excerpt, slug } = Astro.props;
+---
+
+<article class="post">
+  <header class="post__header">
+    <h2>
+      <a href={`/posts/${slug}`} class="post__title">
+        {title}
+      </a>
+    </h2>
+    <div class="post__meta">
+      {format(new Date(publishedAt), 'MMMM d, yyyy')}
+    </div>
+  </header>
+  <div class="post__excerpt">
+    {excerpt}
+  </div>
+</article>
+
+<style lang="css">
+  .post {
+    margin-bottom: 2rem;
+    
+    &__header {
+      margin-bottom: 1rem;
+    }
+    
+    &__title {
+      color: var(--color-text);
+      text-decoration: none;
+      
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+    
+    &__meta {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+    }
+    
+    &__excerpt {
+      line-height: 1.6;
+    }
+  }
+</style>
