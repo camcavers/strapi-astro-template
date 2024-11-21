@@ -57,6 +57,33 @@ cd ../frontend
 npm install
 ```
 
+## Environment Variables
+
+To run this project, you will need to set up the following environment variables in a `.env` file at the root of your project:
+
+### Strapi Backend
+```sh
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS="your-app-keys-here"
+API_TOKEN_SALT=your-api-token-salt
+ADMIN_JWT_SECRET=your-admin-jwt-secret
+TRANSFER_TOKEN_SALT=your-transfer-token-salt
+JWT_SECRET=your-jwt-secret
+
+# Database
+DATABASE_CLIENT=sqlite
+DATABASE_FILENAME=.tmp/data.db
+
+# For production, use these database settings instead:
+# DATABASE_CLIENT=postgres
+# DATABASE_HOST=your-database-host
+# DATABASE_PORT=5432
+# DATABASE_NAME=your-database-name
+# DATABASE_USERNAME=your-username
+# DATABASE_PASSWORD=your-password
+# DATABASE_SSL=true
+
 ## Running the Project
 
 ### 1. Start the CMS
