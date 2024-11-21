@@ -57,6 +57,8 @@ cd ../frontend
 npm install
 ```
 
+# Environment Variables Setup
+
 ## Environment Variables
 
 To run this project, you will need to set up the following environment variables in a `.env` file at the root of your project:
@@ -83,6 +85,45 @@ DATABASE_FILENAME=.tmp/data.db
 # DATABASE_USERNAME=your-username
 # DATABASE_PASSWORD=your-password
 # DATABASE_SSL=true
+```
+
+### Astro Frontend
+```sh
+PUBLIC_STRAPI_URL=http://localhost:1337
+PUBLIC_STRAPI_API_TOKEN=your-api-token-here
+```
+
+### How to set up
+
+1. Copy the `.env.example` file to a new file named `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Generate secure keys for your environment:
+   - App Keys: Generate four random keys separated by commas
+   - All other secrets: Generate random strings (32 characters recommended)
+   - You can use this command to generate random strings:
+     ```bash
+     openssl rand -base64 32
+     ```
+
+3. For the Strapi API token:
+   - Log into your Strapi admin panel
+   - Go to Settings > API Tokens
+   - Create a new full-access API token
+   - Copy this token to your frontend .env file
+
+4. If using Begin.com for deployment:
+   - Add these environment variables in your Begin.com dashboard
+   - Go to your project settings
+   - Add each variable under the Environment Variables section
+
+⚠️ **Important Notes:**
+- Never commit the `.env` file to version control
+- Keep your API tokens and secrets secure
+- Different environments (development, staging, production) should use different tokens
+
 
 ## Running the Project
 
