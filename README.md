@@ -162,10 +162,10 @@ Example `.env` file:
 ```env
 HOST=localhost
 PORT=1337
-APP_KEYS=your_app_keys
-API_TOKEN_SALT=your_api_token_salt
-ADMIN_JWT_SECRET=your_admin_jwt_secret
-TRANSFER_TOKEN_SALT=your_transfer_token_salt
+APP_KEYS=/3P2K3hAU0tEVQ9TFbuz0vgN/cXr3mszzJS0BwA13CY=,aBECuZX95Hjjy574xKzz2QEQwEoVvgASX3Bp53PNDsQ=,Snnz18+Vn662yLE/MIK1TaXHYnR45vvRQ4za6544XlA=,Qct1IbnnFKiC5AAJtBVSktxQmFlyXPXC/kbYg+aUse0=
+API_TOKEN_SALT=7W1rsXgs8U/+8XCGenxRpXXzrcJIZSokjt0ft5U2Wzw=
+ADMIN_JWT_SECRET=CzrHVFAX2c77Eyh1McyNsE0cUHiUubnhxJwH/Lgdg0M=
+TRANSFER_TOKEN_SALT=rVog+/e11QKp4idznEGkysqHbcXZ8TjtFu6Pet3jmg8=
 ```
 
 Replace the placeholders (`your_app_keys`, `your_api_token_salt`, etc.) with secure, random strings.
