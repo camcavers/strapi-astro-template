@@ -2,21 +2,48 @@
 import Layout from '../../layouts/Layout.astro';
 import { fetchPost } from '../../lib/api';
 
-// Add console.log for debugging
-console.log('Fetching post with slug:', Astro.params.slug);
-const post = await fetchPost(Astro.params.slug);
-console.log('Post fetched:', post);
+// Handle potential undefined slug
+const { slug } = Astro.params;
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+// Fetch post with proper null handling
+const post = await fetchPost(slug);
+if (!post) {
+  return Astro.redirect('/404');
+}
 ---
 
 <Layout title={post.attributes.title}>
-  <article class="container post-full">
-    <header class="post-full__header">
+  <main>
+    <article class="post-full">
       <h1>{post.attributes.title}</h1>
-      <div class="post-full__meta">
+      <p class="post-full__date">
         {new Date(post.attributes.publishedAt).toLocaleDateString()}
-      </div>
-    </header>
-    
-    <div class="post-full__content" set:html={post.attributes.content} />
-  </article>
+      </p>
+      <div class="post-full__content" set:html={post.attributes.content} />
+    </article>
+  </main>
 </Layout>
+
+<style>
+  .post-full {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .post-full h1 {
+    margin-bottom: 1rem;
+  }
+  
+  .post-full__date {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .post-full__content {
+    line-height: 1.6;
+  }
+</style>

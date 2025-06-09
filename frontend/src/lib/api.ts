@@ -6,14 +6,31 @@ console.log('API Client - Environment Variables:', {
   hasToken: !!STRAPI_TOKEN
 });
 
-type Post = {
+// Updated to match Strapi's actual response format
+export type Post = {
   id: number;
-  title: string;
-  slug: string;
-  content: string;
-  excerpt: string;
-  publishedAt: string;
-  // Include other fields as necessary
+  attributes: {
+    title: string;
+    slug: string;
+    content: string;
+    excerpt: string;
+    publishedAt: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+};
+
+// Type for Strapi API responses
+type StrapiResponse<T> = {
+  data: T;
+  meta: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
 };
 
 export async function fetchAPI<T>(endpoint: string): Promise<T> {
@@ -45,7 +62,7 @@ export async function fetchAPI<T>(endpoint: string): Promise<T> {
       throw new Error(`API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: StrapiResponse<T> = await response.json();
     return data.data;
   } catch (error) {
     console.error('Fetch error:', error);
@@ -54,15 +71,15 @@ export async function fetchAPI<T>(endpoint: string): Promise<T> {
 }
 
 export async function fetchPosts(): Promise<Post[]> {
-  // Using the exact API path from your Strapi URL
-  return fetchAPI('/posts');
+  return fetchAPI<Post[]>('/posts');
 }
 
-export async function fetchPost(slug: string): Promise<Post> {
-  // Using the exact API path and query parameter format
-  const posts = await fetchAPI(`/posts?filters[slug][$eq]=${slug}`);
-  if (!posts.length) {
-    throw new Error(`Post not found: ${slug}`);
+export async function fetchPost(slug: string): Promise<Post | null> {
+  if (!slug) return null;
+  
+  const posts = await fetchAPI<Post[]>(`/posts?filters[slug][$eq]=${slug}`);
+  if (!Array.isArray(posts) || posts.length === 0) {
+    return null;
   }
   return posts[0];
 }
